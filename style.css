@@ -1,0 +1,445 @@
+:root {
+  /* Palet olive, basis: #414626 */
+  --olive-900: #1F2211;
+  --olive-800: #2B2F19;
+  --olive-700: #414626;
+  --olive-500: #6B7240;
+  --olive-300: #A9AF84;
+  --olive-200: #D5D9C0;
+  --olive-100: #E9EBDD;
+  --olive-50:  #F5F6EE;
+
+  --primary: var(--olive-700);
+  --primary-hover: var(--olive-800);
+  --dark: var(--olive-900);
+  --bg: var(--olive-50);
+  --card-bg: #ffffff;
+  --border: var(--olive-200);
+  --muted: var(--olive-500);
+  --text-soft: #5A6040;      /* teks sekunder: deskripsi, stok */
+  --text-faint: #858B68;     /* teks tersier: SKU, tombol close */
+  --surface: var(--olive-100); /* background gambar kosong */
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+}
+
+img { max-width: 100%; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: background 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--primary-hover);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* ---- Header: logo + nav kategori ---- */
+.site-header {
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 20px 0;
+  text-align: center;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hamburger-btn {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 40px;
+  height: 36px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--primary);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger-btn.open span:nth-child(2) { opacity: 0; }
+.hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.brand-box {
+  display: inline-block;
+  margin-bottom: 18px;
+}
+
+.logo-img {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+.kategori-nav {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding-bottom: 16px;
+}
+
+.kategori-btn {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-family: inherit;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 7px 16px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.kategori-btn:hover {
+  color: var(--primary);
+  background: var(--olive-100);
+}
+
+.kategori-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  font-weight: 600;
+}
+
+/* ---- Grid & kartu produk ---- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: var(--surface);
+}
+
+.card .no-image {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  background: var(--surface);
+  font-size: 0.9rem;
+}
+
+.card-body {
+  padding: 14px 16px;
+}
+
+.card-body h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+
+.harga {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.card-body .harga {
+  margin: 4px 0;
+}
+
+.card.clickable {
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card.clickable:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(65, 70, 38, 0.15);
+}
+
+.card.clickable:focus-visible {
+  outline: 2px solid var(--olive-500);
+  outline-offset: 2px;
+}
+
+.sku-label {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-faint);
+}
+
+/* ---- Modal detail produk ---- */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 34, 17, 0.65);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-box {
+  background: var(--card-bg);
+  border-radius: 14px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 24px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: var(--text-faint);
+  line-height: 1;
+  z-index: 1;
+}
+
+.modal-close:hover {
+  color: var(--primary);
+}
+
+.modal-gambar-utama {
+  width: 100%;
+  max-height: 340px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: var(--surface);
+  display: block;
+  margin: 0 auto;
+}
+
+.modal-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.modal-thumbs .thumb {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 0.7;
+}
+
+.modal-thumbs .thumb.active {
+  border-color: var(--primary);
+  opacity: 1;
+}
+
+.modal-info {
+  margin-top: 18px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.modal-info > :empty {
+  display: none;
+}
+
+.modal-info h2 {
+  margin: 4px 0 8px;
+  font-size: 1.3rem;
+}
+
+.modal-deskripsi {
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  margin: 10px 0;
+  line-height: 1.5;
+  white-space: pre-line; /* Enter di deskripsi jadi baris baru */
+}
+
+.stok {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+/* ---- Tombol beli & toast ---- */
+.btn-beli {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.btn-beli:disabled {
+  background: var(--olive-300);
+  cursor: not-allowed;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--dark);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  max-width: calc(100% - 32px);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 200;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .card img,
+  .card .no-image {
+    height: 140px;
+  }
+
+  .card-body {
+    padding: 10px 12px;
+  }
+
+  .card-body h3 {
+    font-size: 0.9rem;
+  }
+
+  .harga {
+    font-size: 0.9rem;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .kategori-nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    text-align: left;
+    padding-bottom: 8px;
+  }
+
+  .kategori-nav.open {
+    display: flex;
+  }
+
+  .kategori-btn {
+    padding: 12px 4px;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    text-align: left;
+  }
+
+  .kategori-btn.active {
+    background: none;
+    color: var(--primary);
+    border-color: transparent;
+    border-bottom-color: var(--border);
+  }
+
+  .modal-overlay {
+    padding: 12px;
+  }
+}

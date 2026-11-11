@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olive Tree — Katalog Produk</title>
+  <meta name="description" content="Katalog produk Olive Tree" />
+  <meta name="theme-color" content="#414626" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="sr-only">Olive Tree — Katalog Produk</h1>
+    <div class="header-top">
+      <a href="./" class="brand-box" aria-label="Olive Tree">
+        <img src="images/logo.png" alt="Olive Tree" class="logo-img" />
+      </a>
+      <button class="hamburger-btn" id="hamburger-btn" type="button"
+              aria-label="Buka menu kategori" aria-expanded="false" aria-controls="kategori-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="kategori-nav" id="kategori-nav" aria-label="Kategori produk"></nav>
+  </header>
+
+  <main class="container">
+    <div class="grid" id="grid-produk"></div>
+    <div class="empty-state" id="empty-state" hidden></div>
+  </main>
+
+  <!-- Modal detail produk -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-nama">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close" type="button" aria-label="Tutup">&times;</button>
+      <img id="modal-gambar-utama" class="modal-gambar-utama" src="" alt="" />
+      <div class="modal-thumbs" id="modal-thumbs"></div>
+      <div class="modal-info">
+        <div class="sku-label" id="modal-sku"></div>
+        <h2 id="modal-nama"></h2>
+        <div class="harga" id="modal-harga"></div>
+        <p class="modal-deskripsi" id="modal-deskripsi"></p>
+        <div class="stok" id="modal-stok"></div>
+        <button type="button" class="btn btn-beli" id="modal-beli">Beli via Instagram</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Data produk ada di data/products.js (ini file yang kamu edit) -->
+  <script src="data/products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
